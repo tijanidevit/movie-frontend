@@ -24,6 +24,7 @@ export const Movies = () => {
       <Banner />
       <div className="container">
         <h3 className="text-center">Latest Movies</h3>
+        {message !== "" && <p>{message}</p>}
         <AllMovies movies={movies} />
       </div>
     </div>

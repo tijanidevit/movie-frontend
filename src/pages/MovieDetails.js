@@ -8,20 +8,21 @@ export const MovieDetails = () => {
   let { slug } = useParams();
   const [movie, setMovie] = useState([]);
   const [message, setMessage] = useState("");
+
   useEffect(() => {
     if (movie.length === 0) {
+      const fetchMovie = async () => {
+        const data = await axios.get(API_URL + "movies/" + slug);
+        const output = data.data;
+        if (output.success) {
+          setMovie(output.data);
+        } else {
+          setMessage(output.message);
+        }
+      };
       fetchMovie();
     }
-  }, [movie]);
-  const fetchMovie = async () => {
-    const data = await axios.get(API_URL + "movies/" + slug);
-    const output = data.data;
-    if (output.success) {
-      setMovie(output.data);
-    } else {
-      setMessage(output.message);
-    }
-  };
+  });
 
   return (
     <div>

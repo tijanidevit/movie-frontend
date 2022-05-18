@@ -12,7 +12,7 @@ export const AdminMovieDetails = () => {
     if (movie.length === 0) {
       fetchMovie();
     }
-  }, [movie]);
+  });
   const fetchMovie = async () => {
     const data = await axios.get(API_URL + "movies/" + slug);
     const output = data.data;
